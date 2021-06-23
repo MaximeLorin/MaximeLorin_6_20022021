@@ -2,14 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
+require("dotenv").config();
+
 const userRoutes = require("./routes/user");
 const saucesRoutes = require("./routes/sauces");
 
 mongoose
-  .connect(
-    "mongodb+srv://mcmixmax:projet6mdp@cluster0.c7gqi.mongodb.net/test?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.DB_LINK, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 

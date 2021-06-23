@@ -1,6 +1,5 @@
 const Sauce = require("../models/Sauce");
 const fs = require("fs");
-const { response } = require("express");
 
 exports.createSauces = async (req, res, next) => {
   try {
