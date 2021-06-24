@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
-
 const {
   Types: { ObjectId },
 } = mongoose;
 
-const validateObjectId = (id) =>
-  ObjectId.isValid(id) && new ObjectId(id).toString() === id;
+module.exports = (req, res, next) => {
+  const { id } = req.params;
 
-module.exports = validateObjectId;
+  if (ObjectId.isValid(id) && new ObjectId(id).toString() === id) {
+    next();
+  } else {
+    res.status(400).json("Bad Request: invalid mongo ID !");
+  }
+};

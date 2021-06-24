@@ -120,8 +120,11 @@ exports.deleteSauce = async (req, res, next) => {
 
 exports.getSauce = async (req, res, next) => {
   try {
-    const sauces = await Sauce.findOne({ _id: req.params.id });
-    res.status(200).json(sauces);
+    const sauce = await Sauce.findOne({ _id: req.params.id });
+    if (!sauce) {
+      res.status(404).json("Cette sauce n'existe pas !");
+    }
+    res.status(200).json(sauce);
   } catch {
     res.status(400).json(error);
   }

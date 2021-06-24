@@ -10,12 +10,12 @@ router.get("/", auth, saucesCtrl.getSauces);
 
 router.post("/", auth, multer, saucesCtrl.createSauces);
 
-router.post("/:id/like", auth, saucesCtrl.likeSauces);
+router.post("/:id/like", auth, checkId, saucesCtrl.likeSauces);
 
-router.get("/:id", auth, saucesCtrl.getSauce);
+router.get("/:id", auth, checkId, saucesCtrl.getSauce);
 
-router.put("/:id", auth, multer, saucesCtrl.modifySauce);
+router.put("/:id", auth, checkId, multer, saucesCtrl.modifySauce);
 
-router.delete("/:id", auth, saucesCtrl.deleteSauce);
+router.delete("/:id", auth, checkId, saucesCtrl.deleteSauce);
 
 module.exports = router;
